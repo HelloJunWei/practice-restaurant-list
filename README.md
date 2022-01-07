@@ -1,5 +1,5 @@
 ## Restaurant List
-(use node.js and express)
+a website created by node.js and express
 
 #You can...
 - view all restaurants on list
