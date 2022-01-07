@@ -23,9 +23,13 @@ app.get('/restaurants/:restaurant_id', (req, res) => {
   res.render('show', { restaurant: restaurant })
 })
 app.get('/search', (req, res) => {
-  // console.log(req.query.keyword)
-  const restaurants = restaurantList.results.filter(restaurant => restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase()))
-  res.render('index', { restaurants: restaurants })
+  const restaurants = restaurantList.results.filter((restaurant) => {
+    if (restaurant.name.toLowerCase().includes(req.query.keyword.toLowerCase()) ||
+      restaurant.category.toLowerCase().includes(req.query.keyword.toLowerCase())) {
+      return true
+    }
+  })
+  res.render('index', { restaurants: restaurants, keywords: req.query.keyword })
 })
 
 // Start and Listen on the Express server
